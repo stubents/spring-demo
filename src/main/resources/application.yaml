@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/postgres?currentSchema=demo"
+    username: "dbuser"
+    password: "demo"

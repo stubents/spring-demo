@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  demo:
+    ports:
+      - "8888:8080"
+    build:
+      dockerfile: Dockerfile
+      context: .
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/postgres?currentSchema=demo
+    depends_on:
+      - postgres-db
+
+  postgres-db:
+    ports:
+      - "5432:5432"
+    image: postgres
+    volumes:
+      - "demo-data:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_USER: "dbuser"
+      POSTGRES_PASSWORD: "demo"
+      POSTGRES_DB: "postgres"
+
+volumes:
+  demo-data:
